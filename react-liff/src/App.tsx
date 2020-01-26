@@ -1,29 +1,37 @@
-import React, { FC, useState, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import './App.scss';
+import React, { FC, useState, useEffect } from 'react'
+import { Profile } from '@line/bot-sdk'
+import './App.scss'
 
 const App: FC = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(false)
+  const [profile, setProfile] = useState<Profile>({
+    displayName: '',
+    userId: '',
+    pictureUrl: '',
+    statusMessage: '',
+  })
 
   useEffect(() => {
     liff.init({ liffId: process.env.REACT_APP_LIFF_ID as string }).then(() => {
-      setIsLogin(liff.isLoggedIn())
+      if (liff.isLoggedIn()) {
+        liff.login()
+      }
+      liff.getProfile()
+        .then(profile => {
+          setProfile(profile)
+        })
+        .catch((err) => {
+          console.log('error', err)
+        })
     })
   }, [])
 
-  const login = () => {
-    liff.init({ liffId: process.env.REACT_APP_LIFF_ID as string }).then(() => {
-      liff.login()
-      setIsLogin(liff.isLoggedIn())
-    })
-  }
-
   return (
     <div className="App">
-      <div className="loginButton">
-        <Button variant="contained" color="primary" onClick={() => login()} disabled={isLogin}>
-          Login
-        </Button>
+      <div className="profile">
+        {profile.displayName}
+        {profile.pictureUrl}
+        {profile.statusMessage}
+        {profile.userId}
       </div>
     </div>
   );
