@@ -27,10 +27,16 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <div className="profile">
+      <div>
         {profile.displayName}
+      </div>
+      <div>
         {profile.pictureUrl}
+      </div>
+      <div>
         {profile.statusMessage}
+      </div>
+      <div>
         {profile.userId}
       </div>
     </div>
