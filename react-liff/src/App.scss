@@ -1,4 +1,15 @@
 .App {
   text-align: center;
-  margin-top: 100px;
+  
+  .name {
+    font-size: 3.0rem;
+  }
+
+  .picture {
+    width: 200px;
+  }
+
+  .status {
+    font-size: 2.0rem;
+  }
 }

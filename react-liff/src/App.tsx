@@ -34,7 +34,7 @@ const App: FC = () => {
       <div className="status">
         {profile.statusMessage}
       </div>
-      <div className="id">
+      <div className="userid">
         {profile.userId}
       </div>
     </div>
