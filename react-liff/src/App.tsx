@@ -11,7 +11,7 @@ const App: FC = () => {
   })
 
   useEffect(() => {
-    liff.init({ liffId: process.env.REACT_APP_LIFF_ID as string }).then(() => {
+    liff.init({ liffId: process.env.REACT_APP_LIFF_ID! }).then(() => {
       if (!liff.isLoggedIn()) {
         liff.login()
       }
@@ -27,16 +27,14 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <div>
+      <div className="name">
         {profile.displayName}
       </div>
-      <div>
-        {profile.pictureUrl}
-      </div>
-      <div>
+      <img src={profile.pictureUrl} className="picture"/>
+      <div className="status">
         {profile.statusMessage}
       </div>
-      <div>
+      <div className="id">
         {profile.userId}
       </div>
     </div>
